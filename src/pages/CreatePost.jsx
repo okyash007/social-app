@@ -9,8 +9,10 @@ import {
 } from "firebase/storage";
 import { app } from "../../firebase";
 import { trimString } from "../utils/helper";
+import { useNavigate } from "react-router-dom";
 
 const CreatePost = () => {
+  const navigate = useNavigate();
   const store = useSelector((store) => store.app);
   const [formData, setFormData] = useState({
     text: null,
@@ -32,6 +34,13 @@ const CreatePost = () => {
   function callBack(data) {
     setCreateLoading(false);
     console.log(data);
+    if (!data) {
+      return;
+    } else if (data.sucess == false) {
+      return;
+    } else if (data.sucess == true) {
+      navigate("/post/" + data.data?._id);
+    }
   }
 
   function fileUpload(file) {
@@ -63,13 +72,13 @@ const CreatePost = () => {
     <div className="pt-14 flex flex-col p-2 items-center">
       <div className="w-1/2 max-sm:w-full flex flex-col space-y-2">
         {formData.image ? (
-          <img
-            src={formData.image}
-            className="rounded-xl border-2 border-base-content border-opacity-10 "
-            alt=""
-          />
+          <div className="avatar border-2 border-base-content rounded-xl border-opacity-10">
+            <div className="w-full aspect-square rounded-xl">
+              <img src={formData.image} />
+            </div>
+          </div>
         ) : (
-          <div className=" border-2 h-96 border-base-content border-opacity-10 space-y-3 p-3 flex flex-col justify-center items-center rounded-xl bg-base-300">
+          <div className=" border-2 aspect-square border-base-content border-opacity-10 space-y-3 p-3 flex flex-col justify-center items-center rounded-xl bg-base-300">
             <label className="form-control w-full max-w-xs">
               <div className="label">
                 <span className="label-text">Pick a image</span>
@@ -97,17 +106,25 @@ const CreatePost = () => {
         <textarea
           className="textarea textarea-bordered rounded-xl bg-base-300 font-semibold"
           placeholder="Caption here"
+          disabled={formData.image ? false : true}
           onChange={(e) => changeFormData("text", trimString(e.target.value))}
         ></textarea>
         {createLoading ? (
-          <span className="loading loading-dots loading-md"></span>
+          <div className="w-full bg-base-300 rounded-xl p-3 flex justify-center items-center">
+            <span className="loading loading-dots loading-md"></span>
+          </div>
         ) : (
           <button
             className="btn bg-base-300 rounded-xl border-2 border-base-content border-opacity-10"
+            disabled={formData.image && formData.text ? false : true}
             onClick={() => {
               setCreateLoading(true);
               if (!Object.values(formData).includes(null)) {
-                makePostRequest("https://gitsta.onrender.com/api/v1/post/create", formData, callBack);
+                makePostRequest(
+                  "https://gitsta.onrender.com/api/v1/post/create",
+                  formData,
+                  callBack
+                );
               }
             }}
           >

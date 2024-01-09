@@ -13,7 +13,10 @@ const Post = () => {
   const user = useSelector((store) => store.app.user);
   const [likeError, setLikeError] = useState(null);
   const [likeLoading, setLikLoading] = useState(false);
-  const postData = useFetchData("https://gitsta.onrender.com/api/v1/post/details/" + params.id, user);
+  const postData = useFetchData(
+    "https://gitsta.onrender.com/api/v1/post/details/" + params.id,
+    user
+  );
 
   if (!postData.data) {
     return (
@@ -44,12 +47,12 @@ const Post = () => {
 
   return (
     <div className="flex flex-col items-center p-2 pt-12">
-      <div className="w-1/2 max-md:w-full space-y-2">
-        <img
-          className="rounded-xl border-2 w-full border-base-content border-opacity-10"
-          src={postData.data.data.image}
-          alt=""
-        />
+      <div className="w-1/2 max-sm:w-full space-y-2">
+        <div className="avatar w-full border-2 border-base-content rounded-xl border-opacity-10">
+          <div className="w-full aspect-square rounded-xl">
+            <img src={postData.data.data.image} />
+          </div>
+        </div>
 
         <div>
           <p className="font-semibold">{postData.data.data.text}</p>
@@ -62,7 +65,7 @@ const Post = () => {
         </div>
         <div className="flex flex-row justify-between">
           <div
-            className="cursor-pointer"
+            className="cursor-pointer flex justify-center items-center"
             onClick={() => {
               setLikLoading(true);
               makePostRequest(
