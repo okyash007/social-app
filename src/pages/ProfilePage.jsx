@@ -17,7 +17,10 @@ const ProfilePage = () => {
   const [followError, setFollowError] = useState(null);
   const [followLoading, setFollowLoading] = useState(false);
 
-  const data = useFetchData("https://gitsta.onrender.com/api/v1/user/profile/" + username);
+  const data = useFetchData(
+    "https://gitsta.onrender.com/api/v1/user/profile/" + username,
+    store.user
+  );
   const githubData = useFetchData(
     `https://api.github.com/users/${username}/repos`
   );
@@ -69,18 +72,35 @@ const ProfilePage = () => {
         </div>
       </div>
 
-      <div className="flex-grow w-1/2 max-md:w-full p-2 pt-20 ">
+      <div className="flex-grow w-1/2 space-y-2 max-md:w-full p-2 pt-20 ">
+        <div className="stats bg-base-300 mt-2 border-2 border-base-content border-opacity-10 w-full stats-horizontal shadow">
+          <div className="stat">
+            <div className="stat-title">Followers</div>
+            <div className="stat-value">{userData.followers.length}</div>
+            <div className="stat-desc">↗︎ 400 (22%)</div>
+          </div>
+
+          <div className="stat">
+            <div className="stat-title">Following</div>
+            <div className="stat-value">{userData.following.length}</div>
+            <div className="stat-desc">↘︎ 90 (14%)</div>
+          </div>
+        </div>
+
         {username != store.user.username && (
-          <div>
+          <div className="join w-full flex bg-base-300 flex-row border-2 border-base-content border-opacity-10 rounded-xl">
             {followLoading ? (
-              <span className="loading loading-spinner loading-xs"></span>
+              <div className="flex-grow flex justify-center items-center bg-base-300 rounded-l-xl">
+                <span className="loading loading-spinner loading-xs"></span>
+              </div>
             ) : (
               <button
-                className="btn"
+                className="btn bg-base-300 flex-grow join-item"
                 onClick={() => {
                   setFollowLoading(true);
                   makePostRequest(
-                    "https://gitsta.onrender.com/api/v1/user/follow/" + username,
+                    "https://gitsta.onrender.com/api/v1/user/follow/" +
+                      username,
                     {
                       uid: store.user._id,
                     },
@@ -93,20 +113,24 @@ const ProfilePage = () => {
                   : "follow"}
               </button>
             )}
+
+            <button className="btn bg-base-300 flex-grow join-item">
+              message
+            </button>
           </div>
         )}
 
         <div
           role="tablist"
-          className="tabs bg-base-300 border-2 border-opacity-10 border-base-content rounded-xl tabs-boxed my-2"
+          className="tabs bg-base-300 border-2 border-opacity-10 border-base-content rounded-xl tabs-boxed"
         >
           <a
             role="tab"
             onClick={() => setTab("posts")}
             className={
               tab === "posts"
-                ? "tab font-semibold text-sm transition-all bg-neutral bg-opacity-30 "
-                : "tab transition-all text-sm font-semibold "
+                ? "tab hover:bg-base-content hover:bg-opacity-10 font-semibold text-sm transition-all bg-neutral bg-opacity-30 "
+                : "tab transition-all hover:bg-base-content hover:bg-opacity-10 text-sm font-semibold "
             }
           >
             Posts
@@ -116,8 +140,8 @@ const ProfilePage = () => {
             onClick={() => setTab("repos")}
             className={
               tab === "repos"
-                ? "tab font-semibold text-sm transition-all bg-neutral bg-opacity-30 "
-                : "tab transition-all text-sm font-semibold "
+                ? "tab hover:bg-base-content hover:bg-opacity-10 font-semibold text-sm transition-all bg-neutral bg-opacity-30 "
+                : "tab hover:bg-base-content hover:bg-opacity-10 transition-all text-sm font-semibold "
             }
           >
             Repos
