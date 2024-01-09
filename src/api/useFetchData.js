@@ -3,12 +3,6 @@ import { useState, useEffect } from "react";
 export function useFetchData(url, parameter) {
   const [data, setData] = useState(null);
 
-  let param = url;
-
-  if (parameter) {
-    param = parameter;
-  }
-
   useEffect(() => {
     async function fetchData() {
       try {
@@ -21,7 +15,7 @@ export function useFetchData(url, parameter) {
     }
 
     fetchData();
-  }, [param]);
+  }, [url, parameter]);
 
   return { data };
 }
