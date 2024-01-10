@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 
-export function useFetchData(url, parameter) {
-  const [data, setData] = useState(null);
-
+export function useFetchData2(url, parameter, callBack) {
   useEffect(() => {
     async function fetchData() {
       try {
@@ -11,14 +9,12 @@ export function useFetchData(url, parameter) {
           credentials: "include",
         });
         const data = await response.json();
-        setData(data);
+        callBack(data);
       } catch (error) {
-        setData(data);
+        // callBack(error);
       }
     }
 
     fetchData();
   }, [url, parameter]);
-
-  return { data };
 }

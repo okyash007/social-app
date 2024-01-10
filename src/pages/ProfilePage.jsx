@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useFetchData } from "../api/useFetchData";
 import GithubRepos from "../components/GithubRepos";
 import { AnimatePresence, motion } from "framer-motion";
@@ -17,10 +17,7 @@ const ProfilePage = () => {
   const [followError, setFollowError] = useState(null);
   const [followLoading, setFollowLoading] = useState(false);
 
-  const data = useFetchData(
-    "https://gitsta.onrender.com/api/v1/user/profile/" + username,
-    store.user
-  );
+  const data = useFetchData("https://gitsta.onrender.com/api/v1/user/profile/" + username, store.user);
   const githubData = useFetchData(
     `https://api.github.com/users/${username}/repos`
   );
@@ -99,8 +96,7 @@ const ProfilePage = () => {
                 onClick={() => {
                   setFollowLoading(true);
                   makePostRequest(
-                    "https://gitsta.onrender.com/api/v1/user/follow/" +
-                      username,
+                    "https://gitsta.onrender.com/api/v1/user/follow/" + username,
                     {
                       uid: store.user._id,
                     },
@@ -113,10 +109,12 @@ const ProfilePage = () => {
                   : "follow"}
               </button>
             )}
-
-            <button className="btn bg-base-300 flex-grow join-item">
+            <Link
+              className="btn bg-base-300 flex-grow join-item"
+              to={"/chat/" + userData._id}
+            >
               message
-            </button>
+            </Link>
           </div>
         )}
 

@@ -54,13 +54,19 @@ const UserSlider = () => {
                 username={user.username}
               />
 
-              <Logout />
               <Link
                 to={"/create"}
                 className="btn border-2 h-16 rounded-2xl text-5xl border-base-content border-opacity-30"
               >
                 +
               </Link>
+              <Link
+                to={"/chat"}
+                className="btn border-2 h-16 rounded-2xl  border-base-content border-opacity-30"
+              >
+                Chats
+              </Link>
+              <Logout />
             </div>
           </motion.div>
         </>

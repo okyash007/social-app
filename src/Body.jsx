@@ -14,7 +14,9 @@ const Body = () => {
     if (user) {
       async function fetchData() {
         try {
-          const response = await fetch("https://gitsta.onrender.com/api/v1/user/profile/" + user.username);
+          const response = await fetch(
+            backendDomain + "https://gitsta.onrender.com/api/v1/user/profile/" + user.username
+          );
           const data = await response.json();
           // setData(data);
           dispatch(setUser(data.data));

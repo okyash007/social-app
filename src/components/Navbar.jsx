@@ -24,7 +24,7 @@ const Navbar = () => {
         <div>
           <Link
             to={"/"}
-            className="btn btn-sm"
+            className="btn bg-base-300 border-2 border-base-content border-opacity-10"
             // onClick={() =>
             //   toast(
             //     <div className="text-red-700 rounded-full text-xs px-4 p-2 m-2 bg-opacity-10 bg-black font-extrabold addfont">

@@ -6,10 +6,11 @@ import Landing from "./pages/Landing";
 import Home from "./pages/Home";
 import { Provider } from "react-redux";
 import store from "./store/store";
-import { Tuple } from "@reduxjs/toolkit";
 import ProfilePage from "./pages/ProfilePage";
 import CreatePost from "./pages/CreatePost";
 import Post from "./pages/Post";
+import ChatPage from "./pages/ChatPage";
+import AllChats from "./pages/AllChats";
 
 function App() {
   const appRouter = createBrowserRouter([
@@ -36,6 +37,14 @@ function App() {
         {
           path: "/post/:id",
           element: <Post />,
+        },
+        {
+          path: "/chat",
+          element: <AllChats />,
+        },
+        {
+          path: "/chat/:id",
+          element: <ChatPage />,
         },
       ],
     },
