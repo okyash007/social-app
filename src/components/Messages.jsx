@@ -13,9 +13,11 @@ const Messages = ({ chatId, reciverId }) => {
   const user = useSelector((store) => store.app.user);
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState("");
+  const [sendLoading, setSendLoading] = useState(false);
 
   function messageReciver(data) {
     // console.log(data.data);
+    setSendLoading(false);
     if (!data) {
       return;
     } else if (data.sucess === false) {
@@ -102,24 +104,31 @@ const Messages = ({ chatId, reciverId }) => {
           onChange={(e) => setMessage(e.target.value.trim())}
           //   onFocus={() => console.log("typing")}
         ></textarea>
-        <button
-          disabled={message ? false : true}
-          className="btn join-item border-1 border-opacity-20 border-base-content h-full rounded-xl bg-base-300"
-          onClick={() => {
-            makePostRequest(
-              "https://gitsta.onrender.com/api/v1/message/send",
-              {
-                senderId: user._id,
-                reciverId: reciverId,
-                chatId: chatId,
-                content: message,
-              },
-              messageReciver
-            );
-          }}
-        >
-          send
-        </button>
+        {sendLoading ? (
+          <div className="join-item bg-base-300 flex justify-center items-center px-6 rounded-r-xl border-1 border-opacity-20 border-base-content">
+            <span className="loading loading-spinner loading-sm"></span>
+          </div>
+        ) : (
+          <button
+            disabled={message ? false : true}
+            className="btn join-item border-1 border-opacity-20 border-base-content h-full rounded-xl bg-base-300"
+            onClick={() => {
+              setSendLoading(true);
+              makePostRequest(
+                "https://gitsta.onrender.com/api/v1/message/send",
+                {
+                  senderId: user._id,
+                  reciverId: reciverId,
+                  chatId: chatId,
+                  content: message,
+                },
+                messageReciver
+              );
+            }}
+          >
+            send
+          </button>
+        )}
       </div>
     </div>
   );
