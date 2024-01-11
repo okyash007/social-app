@@ -2,24 +2,17 @@ import React, { useEffect } from "react";
 import LightDarkToggle from "./LightDarkToggle";
 import GithubLogin from "./GithubLogin";
 import { toast, Toaster } from "sonner";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Profile from "./Profile";
-import { Link, useNavigate } from "react-router-dom";
-import { useFetchData } from "../api/useFetchData";
-import { setUser } from "../store/appSlice";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import GetStartedModal from "./getStartedModal";
 
 const Navbar = () => {
-  const navigate = useNavigate();
   const user = useSelector((store) => store.app.user);
-
-  useEffect(() => {
-    if (!user) {
-      navigate("/landing");
-    }
-  }, [user]);
 
   return (
     <>
+      {!user && <Navigate to={"/landing"} />}
       <div className="flex flex-row justify-between p-2 fixed w-full bg-gradient-to-b from-base-300">
         <div>
           <Link
@@ -51,7 +44,7 @@ const Navbar = () => {
               fullname={user.fullname}
             />
           ) : (
-            <GithubLogin />
+            <GetStartedModal />
           )}
         </div>
       </div>

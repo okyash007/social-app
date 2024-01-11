@@ -27,6 +27,8 @@ const AllChats = () => {
     );
   }
 
+  console.log(allChats)
+
   return (
     <div className="flex justify-center">
       <div className="w-1/2 max-sm:w-full pt-12">

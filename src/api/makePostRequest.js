@@ -19,5 +19,6 @@ export async function makePostRequest(url, body, callback) {
     callback(data); // Call the specified callback function with the response data
   } catch (error) {
     // console.log(error.message);
+    callback(error);
   }
 }

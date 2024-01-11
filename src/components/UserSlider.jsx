@@ -22,12 +22,13 @@ const UserSlider = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           ></motion.div>
+
           <motion.div
             initial={{ y: "100%" }}
             animate={{ y: 0 }}
             exit={{ y: "100%" }}
             transition={{ type: "tween" }}
-            className="bg-base-100 rounded-t-3xl border-2 border-base-content border-opacity-40 flex flex-col items-center"
+            className="bg-base-100 rounded-t-3xl border-2 border-base-content border-opacity-40 flex flex-col items-center w-1/2 mx-auto max-sm:w-full"
             style={{
               position: "fixed",
               top: "50vh",
@@ -45,7 +46,7 @@ const UserSlider = () => {
           >
             <div className="bg-base-content bg-opacity-25 w-[30%] m-2 rounded-full cursor-pointer h-2"></div>
             <div
-              className="p-3 flex flex-wrap w-full gap-2"
+              className="p-3 flex flex-wrap justify-center w-full gap-2"
               onClick={() => dispatch(setUserSlider())}
             >
               <UserCard
@@ -56,13 +57,13 @@ const UserSlider = () => {
 
               <Link
                 to={"/create"}
-                className="btn border-2 h-16 rounded-2xl text-5xl border-base-content border-opacity-30"
+                className="btn border-2 flex-grow h-16 rounded-2xl text-5xl border-base-content border-opacity-30"
               >
                 +
               </Link>
               <Link
                 to={"/chat"}
-                className="btn border-2 h-16 rounded-2xl  border-base-content border-opacity-30"
+                className="btn border-2 h-16 rounded-2xl flex-grow  border-base-content border-opacity-30"
               >
                 Chats
               </Link>

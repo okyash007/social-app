@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import Navbar from "./components/Navbar";
-import { Outlet } from "react-router-dom";
+import { Navigate, Outlet, useLocation, useNavigate } from "react-router-dom";
 import UserSlider from "./components/UserSlider";
 import { useDispatch, useSelector } from "react-redux";
 import { useFetchData } from "./api/useFetchData";
@@ -15,7 +15,9 @@ const Body = () => {
       async function fetchData() {
         try {
           const response = await fetch(
-            backendDomain + "https://gitsta.onrender.com/api/v1/user/profile/" + user.username
+            backendDomain +
+              "https://gitsta.onrender.com/api/v1/user/profile/" +
+              user.username
           );
           const data = await response.json();
           // setData(data);

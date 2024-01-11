@@ -1,10 +1,14 @@
 import { useState } from "react";
 import Body from "./Body";
 import { Toaster } from "sonner";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import {
+  Navigate,
+  RouterProvider,
+  createBrowserRouter,
+} from "react-router-dom";
 import Landing from "./pages/Landing";
 import Home from "./pages/Home";
-import { Provider } from "react-redux";
+import { Provider, useSelector } from "react-redux";
 import store from "./store/store";
 import ProfilePage from "./pages/ProfilePage";
 import CreatePost from "./pages/CreatePost";
@@ -13,6 +17,8 @@ import ChatPage from "./pages/ChatPage";
 import AllChats from "./pages/AllChats";
 
 function App() {
+  const user = useSelector((store) => store.app.user);
+
   const appRouter = createBrowserRouter([
     {
       path: "/",
@@ -24,27 +30,27 @@ function App() {
         },
         {
           path: "/",
-          element: <Home />,
+          element: user ? <Home /> : <Navigate to="/landing" />,
         },
         {
           path: "/profile/:username",
-          element: <ProfilePage />,
+          element: user ? <ProfilePage /> : <Navigate to="/landing" />,
         },
         {
           path: "/create",
-          element: <CreatePost />,
+          element: user ? <CreatePost /> : <Navigate to="/landing" />,
         },
         {
           path: "/post/:id",
-          element: <Post />,
+          element: user ? <Post /> : <Navigate to="/landing" />,
         },
         {
           path: "/chat",
-          element: <AllChats />,
+          element: user ? <AllChats /> : <Navigate to="/landing" />,
         },
         {
           path: "/chat/:id",
-          element: <ChatPage />,
+          element: user ? <ChatPage /> : <Navigate to="/landing" />,
         },
       ],
     },
@@ -52,17 +58,15 @@ function App() {
 
   return (
     <>
-      <Provider store={store}>
-        <RouterProvider router={appRouter} />
-        <Toaster
-          theme="dark"
-          dir="rtl"
-          offset={0}
-          toastOptions={{
-            unstyled: true,
-          }}
-        />
-      </Provider>
+      <RouterProvider router={appRouter} />
+      <Toaster
+        theme="dark"
+        dir="rtl"
+        offset={0}
+        toastOptions={{
+          unstyled: true,
+        }}
+      />
     </>
   );
 }

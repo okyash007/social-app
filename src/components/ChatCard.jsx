@@ -5,6 +5,10 @@ import { formatDateAndTime } from "../utils/helper";
 const ChatCard = ({ chatData, myId }) => {
   const userData = chatData.users.filter((m) => m._id !== myId);
 
+  if(!chatData.latestMessage){
+    return
+  }
+
   return (
     <Link to={"/chat/" + userData[0]._id}>
       <div className="border-2 border-base-content m-2 flex gap-2 items-center flex-row flex-grow border-opacity-10 rounded-xl p-3 bg-base-300 hover:bg-base-content hover:bg-opacity-5 active:bg-neutral active:bg-opacity-35 transition-all ">
