@@ -15,6 +15,7 @@ import CreatePost from "./pages/CreatePost";
 import Post from "./pages/Post";
 import ChatPage from "./pages/ChatPage";
 import AllChats from "./pages/AllChats";
+import UserSetting from "./pages/UserSetting";
 
 function App() {
   const user = useSelector((store) => store.app.user);
@@ -51,6 +52,10 @@ function App() {
         {
           path: "/chat/:id",
           element: user ? <ChatPage /> : <Navigate to="/landing" />,
+        },
+        {
+          path: "/settings",
+          element: user ? <UserSetting /> : <Navigate to="/landing" />,
         },
       ],
     },

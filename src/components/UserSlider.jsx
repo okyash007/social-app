@@ -67,6 +67,12 @@ const UserSlider = () => {
               >
                 Chats
               </Link>
+              <Link
+                to={"/settings"}
+                className="btn border-2 h-16 rounded-2xl flex-grow  border-base-content border-opacity-30"
+              >
+                Settings
+              </Link>
               <Logout />
             </div>
           </motion.div>

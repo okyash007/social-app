@@ -20,6 +20,6 @@ export function trimString(str) {
   if (/^[^a-zA-Z]*$/.test(str)) {
     return null;
   } else {
-    return str.trim();
+    return str;
   }
 }
