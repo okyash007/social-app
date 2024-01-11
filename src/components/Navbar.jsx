@@ -5,7 +5,7 @@ import { toast, Toaster } from "sonner";
 import { useSelector } from "react-redux";
 import Profile from "./Profile";
 import { Link, Navigate, useNavigate } from "react-router-dom";
-import GetStartedModal from "./getStartedModal";
+import GetStartedModal from "./GetStartedModal";
 
 const Navbar = () => {
   const user = useSelector((store) => store.app.user);
