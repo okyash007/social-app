@@ -28,13 +28,12 @@ const UserSlider = () => {
             animate={{ y: 0 }}
             exit={{ y: "100%" }}
             transition={{ type: "tween" }}
-            className="bg-base-100 rounded-t-3xl border-2 border-base-content border-opacity-40 flex flex-col items-center w-1/2 mx-auto max-sm:w-full"
+            className=" w-1/2 mx-auto max-sm:w-full p-2"
             style={{
               position: "fixed",
-              top: "50vh",
+              bottom: 0,
               left: 0,
               right: 0,
-              height: "100vh",
             }}
             onDragEnd={(e, { offset, velocity }) => {
               if (offset.y > 50 || velocity.y > 500) {
@@ -44,36 +43,38 @@ const UserSlider = () => {
             drag="y"
             dragConstraints={{ top: 0, bottom: 0 }}
           >
-            <div className="bg-base-content bg-opacity-25 w-[30%] m-2 rounded-full cursor-pointer h-2"></div>
-            <div
-              className="p-3 flex flex-wrap justify-center w-full gap-2"
-              onClick={() => dispatch(setUserSlider())}
-            >
-              <UserCard
-                avatar={user.avatar}
-                fullname={user.fullname}
-                username={user.username}
-              />
+            <div className="bg-base-100 rounded-3xl border-2 border-base-content border-opacity-40 flex flex-col items-center ">
+              <div className="bg-base-content bg-opacity-25 w-[30%] m-2 rounded-full cursor-pointer h-2"></div>
+              <div
+                className="p-3 flex flex-wrap justify-center w-full gap-2"
+                onClick={() => dispatch(setUserSlider())}
+              >
+                <UserCard
+                  avatar={user.avatar}
+                  fullname={user.fullname}
+                  username={user.username}
+                />
 
-              <Link
-                to={"/create"}
-                className="btn border-2 flex-grow h-16 rounded-2xl text-5xl border-base-content border-opacity-30"
-              >
-                +
-              </Link>
-              <Link
-                to={"/chat"}
-                className="btn border-2 h-16 rounded-2xl flex-grow  border-base-content border-opacity-30"
-              >
-                Chats
-              </Link>
-              <Link
-                to={"/settings"}
-                className="btn border-2 h-16 rounded-2xl flex-grow  border-base-content border-opacity-30"
-              >
-                Settings
-              </Link>
-              <Logout />
+                <Link
+                  to={"/create"}
+                  className="btn border-2 flex-grow h-16 rounded-2xl text-5xl border-base-content border-opacity-30"
+                >
+                  +
+                </Link>
+                <Link
+                  to={"/chat"}
+                  className="btn border-2 h-16 rounded-2xl flex-grow  border-base-content border-opacity-30"
+                >
+                  Chats
+                </Link>
+                <Link
+                  to={"/settings"}
+                  className="btn border-2 h-16 rounded-2xl flex-grow  border-base-content border-opacity-30"
+                >
+                  Settings
+                </Link>
+                <Logout />
+              </div>
             </div>
           </motion.div>
         </>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Body from "./Body";
 import { Toaster } from "sonner";
 import {
@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 import Landing from "./pages/Landing";
 import Home from "./pages/Home";
-import { Provider, useSelector } from "react-redux";
+import { Provider, useDispatch, useSelector } from "react-redux";
 import store from "./store/store";
 import ProfilePage from "./pages/ProfilePage";
 import CreatePost from "./pages/CreatePost";
@@ -16,9 +16,30 @@ import Post from "./pages/Post";
 import ChatPage from "./pages/ChatPage";
 import AllChats from "./pages/AllChats";
 import UserSetting from "./pages/UserSetting";
+import { setUser } from "./store/appSlice";
 
 function App() {
+  const dispatch = useDispatch();
   const user = useSelector((store) => store.app.user);
+
+  useEffect(() => {
+    if (user) {
+      async function fetchData() {
+        try {
+          const response = await fetch(
+            "https://gitsta.onrender.com/api/v1/user/profile/" + user.username
+          );
+          const data = await response.json();
+          // setData(data);
+          dispatch(setUser(data.data));
+        } catch (error) {
+          // setData(data);
+        }
+      }
+
+      fetchData();
+    }
+  }, []);
 
   const appRouter = createBrowserRouter([
     {

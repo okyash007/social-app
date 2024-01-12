@@ -53,13 +53,11 @@ const ProfilePage = () => {
     <div className=" flex flex-col mt-12 relative items-center">
       <div className=" fixed w-1/2 max-md:w-full z-10 p-2">
         <div className="border-2 border-base-content border-opacity-10 rounded-xl p-2 bg-base-300 flex flex-row space-x-2 ">
-          <img
-            src={userData.avatar}
-            width={50}
-            height={50}
-            className="rounded-full"
-            alt=""
-          />
+          <div className="avatar">
+            <div className="w-12 rounded-full aspect-square">
+              <img src={userData.avatar} />
+            </div>
+          </div>
           <div>
             <p className="text-2xl font-extrabold">{userData.fullname}</p>
             <p className="text-xs font-semibold opacity-50">
