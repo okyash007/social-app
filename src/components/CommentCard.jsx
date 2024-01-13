@@ -32,6 +32,7 @@ const CommentCard = ({ comment }) => {
 
   function replyReciver(data) {
     setSendReplyLoading(false);
+    changeReply("to", null);
     if (data.sucess == true) {
       dispatch(setUser(data.data));
     } else {
@@ -85,7 +86,6 @@ const CommentCard = ({ comment }) => {
               <button
                 onClick={() => {
                   setSendReplyLoading(true);
-                  changeReply("to", null);
                   makePostRequest(
                     "https://gitsta.onrender.com/api/v1/comment/reply",
                     {

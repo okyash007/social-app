@@ -19,7 +19,11 @@ const PostComments = ({ postId }) => {
     setReply((prev) => ({ ...prev, [key]: value }));
   }
 
-  useFetchData2("https://gitsta.onrender.com/api/v1/comment/" + postId, user, commentReciver);
+  useFetchData2(
+    "https://gitsta.onrender.com/api/v1/comment/" + postId,
+    user,
+    commentReciver
+  );
 
   function commentReciver(data) {
     console.log(data);
@@ -47,7 +51,10 @@ const PostComments = ({ postId }) => {
     <>
       <div className="flex flex-col items-center p-2 space-y-2">
         {comments.map((m, i) => (
-          <div className="bg-base-300 w-1/2 border-2 border-base-content border-opacity-20 max-sm:w-full rounded-xl p-3">
+          <div
+            key={m._id}
+            className="bg-base-300 w-1/2 border-2 border-base-content border-opacity-20 max-sm:w-full rounded-xl p-3"
+          >
             <div key={m._id} className=" flex relative flex-row  gap-2 ">
               <div className="avatar">
                 <div className="w-10 h-10 rounded-full">
