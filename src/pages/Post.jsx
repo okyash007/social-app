@@ -15,7 +15,10 @@ const Post = () => {
   const [likeError, setLikeError] = useState(null);
   const [likeLoading, setLikLoading] = useState(false);
   const [commentSlide, setCommentSlide] = useState(false);
-  const postData = useFetchData("https://gitsta.onrender.com/api/v1/post/details/" + params.id, user);
+  const postData = useFetchData(
+    "https://gitsta.onrender.com/api/v1/post/details/" + params.id,
+    user
+  );
 
   if (!postData.data) {
     return (
@@ -126,7 +129,6 @@ const Post = () => {
               </span>
             </div>
           </div>
-          
         </div>
       </div>
       <PostComments postId={params.id} />
