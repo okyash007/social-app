@@ -9,6 +9,7 @@ const CommentCard = ({ comment }) => {
   const user = useSelector((store) => store.app.user);
   const [comments, setComments] = useState([]);
   const [sendReplyLoading, setSendReplyLoading] = useState(false);
+  const [showReplies, setShowReplies] = useState(false);
   const [reply, setReply] = useState({
     to: null,
     content: null,
@@ -53,6 +54,14 @@ const CommentCard = ({ comment }) => {
             {"@" + comment.user.username}
           </p>
           <p className="text-xs font-semibold break-words">{comment.content}</p>
+          {comments.length > 0 && (
+            <button
+              onClick={() => setShowReplies(!showReplies)}
+              className="text-xs btn btn-sm btn-ghost p-0 opacity-60"
+            >
+              {showReplies ? "hide replies" : "show replies"}
+            </button>
+          )}
         </div>
 
         <button
@@ -106,7 +115,7 @@ const CommentCard = ({ comment }) => {
           </div>
         </div>
       )}
-      {comments.length > 0 &&
+      {showReplies && comments.length > 0 &&
         comments.map((m) => <CommentCard key={m._id} comment={m} />)}
     </div>
   );

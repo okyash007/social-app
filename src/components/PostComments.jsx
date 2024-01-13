@@ -8,6 +8,7 @@ import CommentCard from "./CommentCard";
 const PostComments = ({ postId }) => {
   const dispatch = useDispatch();
   const user = useSelector((store) => store.app.user);
+  const [showReplies, setShowReplies] = useState(false);
   const [comments, setComments] = useState(null);
   const [reply, setReply] = useState({
     to: null,
@@ -66,6 +67,15 @@ const PostComments = ({ postId }) => {
                   {"@" + m.user.username}
                 </p>
                 <p className="text-xs font-semibold break-words">{m.content}</p>
+                {m.replies.length > 0 && (
+                  <button
+                    onClick={() => setShowReplies(!showReplies)}
+                    className="text-xs btn btn-sm btn-ghost p-0 opacity-60"
+                  >
+                    {showReplies ? "hide replies" : "show replies"}
+                  </button>
+                )}
+
                 {reply.to == m._id && (
                   <div className="join w-full pt-2 flex flex-row">
                     <textarea
@@ -122,9 +132,8 @@ const PostComments = ({ postId }) => {
               </button>
             </div>
             <div className="">
-              {m.replies.map((m) => (
-                <CommentCard key={m._id} comment={m} />
-              ))}
+              {showReplies &&
+                m.replies.map((m) => <CommentCard key={m._id} comment={m} />)}
             </div>
           </div>
         ))}
