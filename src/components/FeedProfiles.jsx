@@ -18,7 +18,7 @@ const FeedProfiles = () => {
 
   if (!feedProfile) {
     return (
-      <div className="flex justify-center">
+      <div className="flex justify-center max-lg:hidden">
         <span className="loading loading-dots loading-lg"></span>
       </div>
     );
