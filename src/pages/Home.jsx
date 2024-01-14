@@ -5,7 +5,7 @@ import FeedProfiles from "../components/FeedProfiles";
 import FollowingPosts from "../components/FollowingPosts";
 
 const Home = () => {
-  const [feed, setFeed] = useState(false);
+  const [feed, setFeed] = useState(true);
 
   return (
     <div className=" h-screen flex space-x-2 flex-row justify-center">
