@@ -75,45 +75,6 @@ const PostComments = ({ postId }) => {
                     {showReplies ? "hide replies" : "show replies"}
                   </button>
                 )}
-
-                {reply.to == m._id && (
-                  <div className="join w-full pt-2 flex flex-row">
-                    <textarea
-                      className="textarea textarea-bordered flex-grow rounded-3xl join-item bg-base-300"
-                      placeholder="comment here"
-                      value={reply.content}
-                      onChange={(e) => changeReply("content", e.target.value)}
-                    ></textarea>
-                    <div>
-                      {sendReplyLoading ? (
-                        <div className="join-item border-1 border-opacity-20 border-base-content flex justify-center items-center p-4 rounded-3xl h-full bg-base-300">
-                          <span className="loading loading-spinner loading-sm"></span>
-                        </div>
-                      ) : (
-                        <button
-                          disabled={reply.content ? false : true}
-                          onClick={() => {
-                            setSendReplyLoading(true);
-                            changeReply("to", null);
-                            makePostRequest(
-                              "https://gitsta.onrender.com/api/v1/comment/reply",
-                              {
-                                uid: user._id,
-                                postid: postId,
-                                content: reply.content,
-                                commentid: reply.to,
-                              },
-                              replyReciver
-                            );
-                          }}
-                          className="btn join-item border-1 border-opacity-20 border-base-content  rounded-3xl h-full bg-base-300"
-                        >
-                          send
-                        </button>
-                      )}
-                    </div>
-                  </div>
-                )}
               </div>
 
               <button
@@ -131,6 +92,45 @@ const PostComments = ({ postId }) => {
                 reply
               </button>
             </div>
+            
+            {reply.to == m._id && (
+              <div className="join w-full pt-2 flex flex-row">
+                <textarea
+                  className="textarea text-xs textarea-bordered flex-grow rounded-xl join-item bg-base-300"
+                  placeholder="reply here"
+                  value={reply.content}
+                  onChange={(e) => changeReply("content", e.target.value)}
+                ></textarea>
+                <div>
+                  {sendReplyLoading ? (
+                    <div className="join-item border-1 border-opacity-20 border-base-content flex justify-center items-center p-4 rounded-3xl h-full bg-base-300">
+                      <span className="loading loading-spinner loading-sm"></span>
+                    </div>
+                  ) : (
+                    <button
+                      disabled={reply.content ? false : true}
+                      onClick={() => {
+                        setSendReplyLoading(true);
+                        changeReply("to", null);
+                        makePostRequest(
+                          "https://gitsta.onrender.com/api/v1/comment/reply",
+                          {
+                            uid: user._id,
+                            postid: postId,
+                            content: reply.content,
+                            commentid: reply.to,
+                          },
+                          replyReciver
+                        );
+                      }}
+                      className="btn join-item border-1 border-opacity-20 border-base-content  rounded-xl h-full bg-base-300"
+                    >
+                      send
+                    </button>
+                  )}
+                </div>
+              </div>
+            )}
             <div className="">
               {showReplies &&
                 m.replies.map((m) => <CommentCard key={m._id} comment={m} />)}

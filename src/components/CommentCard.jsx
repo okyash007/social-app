@@ -83,7 +83,7 @@ const CommentCard = ({ comment }) => {
         <div className="flex rounded-xl flex-row join mt-2">
           <textarea
             className=" flex-grow text-xs p-2 rounded-xl join-item textarea textarea-bordered"
-            placeholder="Bio"
+            placeholder="reply here"
             onChange={(e) => changeReply("content", e.target.value)}
           ></textarea>
           <div>
