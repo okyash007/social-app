@@ -16,7 +16,7 @@ const Home = () => {
             onClick={() => setFeed(true)}
             className={
               feed
-                ? "tab bg-neutral font-extrabold transition-all"
+                ? "tab tab-active font-extrabold transition-all"
                 : "tab font-extrabold transition-all hover:bg-base-content hover:bg-opacity-20"
             }
           >
@@ -27,14 +27,16 @@ const Home = () => {
             onClick={() => setFeed(false)}
             className={
               !feed
-                ? "tab bg-neutral font-extrabold transition-all"
+                ? "tab tab-active font-extrabold transition-all"
                 : "tab font-extrabold transition-all hover:bg-base-content hover:bg-opacity-20"
             }
           >
             following
           </a>
         </div>
-        <div className="overflow-y-scroll scroll-bar">{feed ? <FeedPosts /> : <FollowingPosts />}</div>
+        <div className="overflow-y-scroll scroll-bar border-t-2 pt-2 border-opacity-20 border-base-content">
+          {feed ? <FeedPosts /> : <FollowingPosts />}
+        </div>
       </div>
       <FeedProfiles />
     </div>

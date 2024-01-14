@@ -35,7 +35,7 @@ const FeedPosts = () => {
         >
           <Link
             to={"/profile/" + m.user.username}
-            className="hover:bg-opacity-100 hover:bg-neutral transition-all w-fit p-2 border-2 border-base-content border-opacity-5 rounded-xl flex gap-2"
+            className="hover:bg-opacity-100 hover:bg-base-100 transition-all w-fit p-2 border-2 border-base-content border-opacity-5 rounded-xl flex gap-2"
           >
             <div className="avatar">
               <div className="w-10 h-10 aspect-square rounded-full">
