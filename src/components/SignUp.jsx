@@ -74,7 +74,11 @@ const SignUp = () => {
             }
             onClick={() => {
               setSignUpLoading(true);
-              makePostRequest("https://gitsta.onrender.com/api/v1/user/signup", formData, userDataReciver);
+              makePostRequest(
+                "https://gitsta.onrender.com/api/v1/user/signup",
+                formData,
+                userDataReciver
+              );
             }}
             className="btn bg-base-100 w-full border-1 border-base-content border-opacity-20"
           >

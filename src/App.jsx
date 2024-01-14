@@ -17,6 +17,7 @@ import ChatPage from "./pages/ChatPage";
 import AllChats from "./pages/AllChats";
 import UserSetting from "./pages/UserSetting";
 import { setUser } from "./store/appSlice";
+import SearchPage from "./pages/SearchPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -77,6 +78,10 @@ function App() {
         {
           path: "/settings",
           element: user ? <UserSetting /> : <Navigate to="/landing" />,
+        },
+        {
+          path: "/search",
+          element: user ? <SearchPage /> : <Navigate to="/landing" />,
         },
       ],
     },

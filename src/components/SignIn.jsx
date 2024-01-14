@@ -12,6 +12,7 @@ const SignIn = () => {
     username: null,
     password: null,
   });
+  console.log(formData);
   const [signInLoading, setSignInLoading] = useState(false);
   const [signInError, setSignInError] = useState(null);
 
@@ -43,6 +44,7 @@ const SignIn = () => {
         <input
           type="text"
           placeholder="username"
+          // style={{ textTransform: "lowercase" }}
           className="input input-bordered w-full"
           onChange={(e) =>
             changeFormData("username", trimString(e.target.value))
@@ -52,9 +54,9 @@ const SignIn = () => {
           type="password"
           placeholder="password"
           className="input input-bordered w-full"
-          onChange={(e) =>
-            changeFormData("password", trimString(e.target.value))
-          }
+          onChange={(e) => {
+            changeFormData("password", e.target.value);
+          }}
         />
         {signInError && (
           <p className="text-red-500 text-xs px-1">{signInError}</p>
@@ -70,7 +72,11 @@ const SignIn = () => {
             }
             onClick={() => {
               setSignInLoading(true);
-              makePostRequest("https://gitsta.onrender.com/api/v1/user/signin", formData, userDataReciver);
+              makePostRequest(
+                "https://gitsta.onrender.com/api/v1/user/signin",
+                formData,
+                userDataReciver
+              );
             }}
             className="btn bg-base-100 border-1 border-base-content border-opacity-20 w-full"
           >
