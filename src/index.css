@@ -18,11 +18,11 @@ body {
 .scroll-bar::-webkit-scrollbar {
   background-color: transparent;
   width: 0.25rem;
+  opacity: 0;
 }
 
 .scroll-bar::-webkit-scrollbar-thumb {
   background-color: #979797;
-  opacity: 30%;
   border-radius: 1rem;
   width: 0.25rem;
 }
