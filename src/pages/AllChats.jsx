@@ -3,6 +3,7 @@ import { useFetchData2 } from "../api/useFetchData2";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import ChatCard from "../components/ChatCard";
+import { backendDomain } from "../utils/constants";
 
 const AllChats = () => {
   const user = useSelector((store) => store.app.user);
@@ -14,7 +15,7 @@ const AllChats = () => {
   }
 
   useFetchData2(
-    "https://gitsta.onrender.com/api/v1/chat/" + user._id,
+    `${backendDomain}/api/v1/chat/${user._id}`,
     "",
     allChatsReciver
   );
@@ -27,7 +28,7 @@ const AllChats = () => {
     );
   }
 
-  console.log(allChats)
+  console.log(allChats);
 
   return (
     <div className="flex justify-center">

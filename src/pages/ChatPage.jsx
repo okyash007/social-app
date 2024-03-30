@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import UserCard from "../components/UserCard";
 import Messages from "../components/Messages";
 import { addChats } from "../store/appSlice";
+import { backendDomain } from "../utils/constants";
 
 const ChatPage = () => {
   const { id } = useParams();
@@ -23,7 +24,7 @@ const ChatPage = () => {
 
   useEffect(() => {
     makePostRequest(
-      "https://gitsta.onrender.com/api/v1/chat/acess",
+      `${backendDomain}/api/v1/chat/acess`,
       { uid: user._id, fromid: id },
       callback
     );

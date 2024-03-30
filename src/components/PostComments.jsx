@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { makePostRequest } from "../api/makePostRequest";
 import { setUser } from "../store/appSlice";
 import CommentCard from "./CommentCard";
+import { backendDomain } from "../utils/constants";
 
 const PostComments = ({ postId }) => {
   const dispatch = useDispatch();
@@ -21,7 +22,7 @@ const PostComments = ({ postId }) => {
   }
 
   useFetchData2(
-    "https://gitsta.onrender.com/api/v1/comment/" + postId,
+    `${backendDomain}/api/v1/comment/${postId}`,
     user,
     commentReciver
   );
@@ -113,7 +114,7 @@ const PostComments = ({ postId }) => {
                         setSendReplyLoading(true);
                         changeReply("to", null);
                         makePostRequest(
-                          "https://gitsta.onrender.com/api/v1/comment/reply",
+                          `${backendDomain}/api/v1/comment/reply`,
                           {
                             uid: user._id,
                             postid: postId,

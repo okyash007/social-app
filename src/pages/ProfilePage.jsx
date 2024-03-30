@@ -7,6 +7,7 @@ import ProfilePosts from "../components/ProfilePosts";
 import { useDispatch, useSelector } from "react-redux";
 import { makePostRequest } from "../api/makePostRequest";
 import { setUser } from "../store/appSlice";
+import { backendDomain } from "../utils/constants";
 
 const ProfilePage = () => {
   const store = useSelector((store) => store.app);
@@ -17,7 +18,10 @@ const ProfilePage = () => {
   const [followError, setFollowError] = useState(null);
   const [followLoading, setFollowLoading] = useState(false);
 
-  const data = useFetchData("https://gitsta.onrender.com/api/v1/user/profile/" + username, store.user);
+  const data = useFetchData(
+    `${backendDomain}/api/v1/user/profile/${username}`,
+    store.user
+  );
   const githubData = useFetchData(
     `https://api.github.com/users/${username}/repos`
   );
@@ -94,7 +98,7 @@ const ProfilePage = () => {
                 onClick={() => {
                   setFollowLoading(true);
                   makePostRequest(
-                    "https://gitsta.onrender.com/api/v1/user/follow/" + username,
+                    `${backendDomain}/api/v1/user/follow/${username}`,
                     {
                       uid: store.user._id,
                     },

@@ -7,6 +7,7 @@ import { makePostRequest } from "../api/makePostRequest";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../store/appSlice";
 import CommentSlider from "../components/CommentSlider";
+import { backendDomain } from "../utils/constants";
 
 const Post = () => {
   const params = useParams();
@@ -16,7 +17,7 @@ const Post = () => {
   const [likeLoading, setLikLoading] = useState(false);
   const [commentSlide, setCommentSlide] = useState(false);
   const postData = useFetchData(
-    "https://gitsta.onrender.com/api/v1/post/details/" + params.id,
+    `${backendDomain}/api/v1/post/details/${params.id}`,
     user
   );
 
@@ -75,7 +76,7 @@ const Post = () => {
                 onClick={() => {
                   setLikLoading(true);
                   makePostRequest(
-                    "https://gitsta.onrender.com/api/v1/post/like/" + params.id,
+                    `${backendDomain}/api/v1/post/like/${params.id}`,
                     {
                       uid: user._id,
                     },

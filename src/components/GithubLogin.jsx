@@ -6,6 +6,7 @@ import { toast } from "sonner";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setUser } from "../store/appSlice";
+import { backendDomain } from "../utils/constants";
 
 const GithubLogin = () => {
   const [loading, setLoading] = useState(false);
@@ -53,7 +54,7 @@ const GithubLogin = () => {
         password: result.user?.uid,
       });
       makePostRequest(
-        "https://gitsta.onrender.com/api/v1/user/start",
+        `${backendDomain}/api/v1/user/start`,
         {
           fullname: userData.displayName,
           username: userData.screenName,

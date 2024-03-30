@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { useFetchData2 } from "../api/useFetchData2";
 import { Link } from "react-router-dom";
+import { backendDomain } from "../utils/constants";
 
 const FeedPosts = () => {
   const [feedPost, setFeedPost] = useState(null);
   useFetchData2(
-    "https://gitsta.onrender.com/api/v1/post/all",
+    `${backendDomain}/api/v1/post/all`,
     " ",
     feedPostsReciver
   );

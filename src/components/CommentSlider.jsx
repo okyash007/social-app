@@ -4,6 +4,7 @@ import { trimString } from "../utils/helper";
 import { makePostRequest } from "../api/makePostRequest";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../store/appSlice";
+import { backendDomain } from "../utils/constants";
 
 const CommentSlider = ({ commentSlide, setCommentSlide, postId }) => {
   const dispatch = useDispatch();
@@ -76,7 +77,7 @@ const CommentSlider = ({ commentSlide, setCommentSlide, postId }) => {
                       onClick={() => {
                         setSendLoading(true);
                         makePostRequest(
-                          "https://gitsta.onrender.com/api/v1/comment/send",
+                          `${backendDomain}/api/v1/comment/send`,
                           {
                             uid: user._id,
                             postid: postId,

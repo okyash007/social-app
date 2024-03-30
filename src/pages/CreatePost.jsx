@@ -10,6 +10,7 @@ import {
 import { app } from "../../firebase";
 import { trimString } from "../utils/helper";
 import { useNavigate } from "react-router-dom";
+import { backendDomain } from "../utils/constants";
 
 const CreatePost = () => {
   const navigate = useNavigate();
@@ -121,7 +122,7 @@ const CreatePost = () => {
               setCreateLoading(true);
               if (!Object.values(formData).includes(null)) {
                 makePostRequest(
-                  "https://gitsta.onrender.com/api/v1/post/create",
+                  `${backendDomain}/api/v1/post/create`,
                   formData,
                   callBack
                 );

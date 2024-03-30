@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useFetchData2 } from "../api/useFetchData2";
 import { Link } from "react-router-dom";
+import { backendDomain } from "../utils/constants";
 
 const FollowingPosts = () => {
   const [followingPost, setFollowingPost] = useState(null);
   const user = useSelector((store) => store.app.user);
   useFetchData2(
-    "https://gitsta.onrender.com/api/v1/post/following/" + user._id,
+    `${backendDomain}/api/v1/post/following/${user._id}`,
     " ",
     followingPostsReciver
   );

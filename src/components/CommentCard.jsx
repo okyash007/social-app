@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { makePostRequest } from "../api/makePostRequest";
 import { useFetchData2 } from "../api/useFetchData2";
+import { backendDomain } from "../utils/constants";
 
 const CommentCard = ({ comment }) => {
   console.log(comment);
@@ -16,7 +17,7 @@ const CommentCard = ({ comment }) => {
   });
 
   useFetchData2(
-    "https://gitsta.onrender.com/api/v1/comment/replies/" + comment._id,
+    `${backendDomain}/api/v1/comment/replies/${comment._id}`,
     sendReplyLoading,
     commentRepliesReciver
   );
@@ -96,7 +97,7 @@ const CommentCard = ({ comment }) => {
                 onClick={() => {
                   setSendReplyLoading(true);
                   makePostRequest(
-                    "https://gitsta.onrender.com/api/v1/comment/reply",
+                    `${backendDomain}/api/v1/comment/reply`,
                     {
                       uid: user._id,
                       postid: comment.post,

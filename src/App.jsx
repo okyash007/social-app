@@ -28,7 +28,7 @@ function App() {
       async function fetchData() {
         try {
           const response = await fetch(
-            "https://gitsta.onrender.com/api/v1/user/profile/" + user.username
+            `${backendDomain}api/v1/user/profile/${user.username}`
           );
           const data = await response.json();
           // setData(data);

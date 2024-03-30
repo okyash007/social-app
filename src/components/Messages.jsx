@@ -4,8 +4,9 @@ import { makePostRequest } from "../api/makePostRequest";
 import { useFetchData2 } from "../api/useFetchData2";
 import { io } from "socket.io-client";
 import { formatDateAndTime } from "../utils/helper";
+import { backendDomain } from '../utils/constants'
 
-const socket = io.connect("https://gitsta.onrender.com");
+const socket = io.connect(`${backendDomain}`);
 
 const Messages = ({ chatId, reciverId }) => {
   const messageEndRef = useRef(null);
@@ -42,7 +43,7 @@ const Messages = ({ chatId, reciverId }) => {
   }
 
   useFetchData2(
-    "https://gitsta.onrender.com/api/v1/message/" + chatId,
+    `${backendDomain}/api/v1/message/${chatId}`,
     "",
     allMessageReciver
   );
@@ -115,7 +116,7 @@ const Messages = ({ chatId, reciverId }) => {
             onClick={() => {
               setSendLoading(true);
               makePostRequest(
-                "https://gitsta.onrender.com/api/v1/message/send",
+                `${backendDomain}/api/v1/message/send`,
                 {
                   senderId: user._id,
                   reciverId: reciverId,

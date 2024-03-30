@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { trimString } from "../utils/helper";
 import { makePostRequest } from "../api/makePostRequest";
 import { setUser } from "../store/appSlice";
+import { backendDomain } from "../utils/constants";
 
 const SignIn = () => {
   const dispatch = useDispatch();
@@ -73,7 +74,7 @@ const SignIn = () => {
             onClick={() => {
               setSignInLoading(true);
               makePostRequest(
-                "https://gitsta.onrender.com/api/v1/user/signin",
+                `${backendDomain}/api/v1/user/signin`,
                 formData,
                 userDataReciver
               );

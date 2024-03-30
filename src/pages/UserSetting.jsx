@@ -10,6 +10,7 @@ import {
   uploadBytesResumable,
 } from "firebase/storage";
 import { app } from "../../firebase";
+import { backendDomain } from "../utils/constants";
 
 const UserSetting = () => {
   const dispatch = useDispatch();
@@ -150,7 +151,7 @@ const UserSetting = () => {
               onClick={() => {
                 setSaveLoading(true);
                 makePostRequest(
-                  "https://gitsta.onrender.com/api/v1/user/update/" + user._id,
+                  `${backendDomain}/api/v1/user/update/${user._id}`,
                   formData,
                   newUserDataReciver
                 );

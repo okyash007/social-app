@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { useFetchData2 } from "../api/useFetchData2";
 import UserCard from "./UserCard";
+import { backendDomain } from "../utils/constants";
 
 const FeedProfiles = () => {
   const [feedProfile, setFeedProfile] = useState(null);
   useFetchData2(
-    "https://gitsta.onrender.com/api/v1/user/feedprofile",
+    `${backendDomain}/api/v1/user/feedprofile`,
     " ",
     feedProfilesReciver
   );

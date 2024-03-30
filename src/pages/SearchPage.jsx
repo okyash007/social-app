@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useFetchData2 } from "../api/useFetchData2";
 import UserCard from "../components/UserCard";
+import { backendDomain } from "../utils/constants";
 
 const SearchPage = () => {
   const [searchText, setSearchText] = useState("");
@@ -8,7 +9,7 @@ const SearchPage = () => {
   console.log(searchUser);
 
   useFetchData2(
-    "https://gitsta.onrender.com/api/v1/user/search?search=" + searchText,
+    `${backendDomain}/api/v1/user/search?search=${searchText}`,
     searchText,
     searchUserReciver
   );
