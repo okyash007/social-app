@@ -19,6 +19,7 @@ body {
   background-color: transparent;
   width: 0.25rem;
   opacity: 0;
+  
 }
 
 .scroll-bar::-webkit-scrollbar-thumb {
