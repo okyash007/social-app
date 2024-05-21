@@ -1,1 +1,1 @@
-export const backendDomain = "https://gitsta-backend-wwal.onrender.com";
+export const backendDomain = "https://social-app-cwyp.onrender.com";
