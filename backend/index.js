@@ -15,7 +15,7 @@ connectDB()
     const io = new Server(server, {
       pingTimeout: 60000,
       cors: {
-        origin: ["http://localhost:5173", "https://gitsta-frontend.vercel.app", "https://social.okyash.tech"],
+        origin: ["http://localhost:5173", "https://social.okyash.tech"],
         credentials: true,
       },
     });
